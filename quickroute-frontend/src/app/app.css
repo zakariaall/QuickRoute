@@ -1,0 +1,13 @@
+:host { display: block; min-height: 100vh; }
+.site-header { height: 78px; background: #fffefa; border-bottom: 1px solid #eee9df; position: sticky; top: 0; z-index: 10; }
+.nav-wrap { height: 100%; max-width: 1240px; padding: 0 28px; margin: auto; display: flex; align-items: center; gap: 54px; }
+.brand { color: #202820; text-decoration: none; font-size: 23px; font-weight: 850; letter-spacing: -1.2px; display: flex; align-items: center; gap: 9px; }
+.brand-mark { background: #f15e3b; color: white; border-radius: 13px 13px 13px 4px; width: 34px; height: 34px; display: grid; place-items: center; font-size: 23px; font-weight: 800; font-family: Georgia,serif; }
+.brand-dot { color: #f15e3b; }
+.delivery-area { display: flex; align-items: center; gap: 10px; color: #77776f; border-left: 1px solid #ece8de; padding-left: 30px; font-size: 13px; }
+.delivery-area span:nth-child(2) { display: grid; gap: 3px; }.delivery-area small { font-size: 10px; color: #98978e; }.delivery-area strong { color: #30362f; font-size: 12px; font-weight: 700; }.pin { color: #f15e3b; font-size: 22px; }.chevron { margin-left: 8px; }
+nav { display: flex; align-items: center; gap: 28px; margin-left: auto; height: 100%; } nav a { text-decoration: none; color: #73756f; font-size: 13px; font-weight: 650; } nav a.active { color: #252c25; }.cart-link { display: flex; align-items: center; gap: 8px; }.cart-link b { background: #f15e3b; color: white; min-width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; font-size: 10px; }.cart-icon { font-size: 17px; }
+.login-button { border: 0; border-radius: 9px; padding: 12px 17px; color: white; background: #f15e3b; font: inherit; font-size: 12px; font-weight: 750; cursor: pointer; box-shadow: 0 5px 12px #f15e3b2a; }.login-button span { margin-left: 12px; }
+.account-button { border: 0; background: none; display: flex; align-items: center; gap: 8px; font: inherit; color: #293028; font-size: 12px; cursor: pointer; }.account-button small { color: #999; margin-left: 4px; }.avatar { background: #e8efe6; color: #52634e; height: 30px; width: 30px; display: grid; place-items: center; border-radius: 50%; font-weight: 800; }
+main { min-height: calc(100vh - 78px); }
+@media(max-width:760px) { .nav-wrap { padding: 0 16px; gap: 14px; }.delivery-area, nav>a:first-child, .account-button small { display:none; } nav { gap: 14px; }.brand { font-size:20px; }.login-button { padding: 10px 12px; } }

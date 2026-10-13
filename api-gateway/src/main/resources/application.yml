@@ -1,0 +1,51 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9091/realms/quickroute
+          jwk-set-uri: http://localhost:9091/realms/quickroute/protocol/openid-connect/certs
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+          - id: catalog-service-restaurants
+            uri: http://localhost:8083
+            predicates:
+              - Path=/api/restaurants, /api/restaurants/**
+          - id: catalog-service-categories
+            uri: http://localhost:8083
+            predicates:
+              - Path=/api/categories, /api/categories/**
+          - id: catalog-service-products
+            uri: http://localhost:8083
+            predicates:
+              - Path=/api/products, /api/products/**
+          - id: catalog-service-applications
+            uri: http://localhost:8083
+            predicates:
+              - Path=/api/applications, /api/applications/**
+          - id: order-service
+            uri: http://localhost:8082
+            predicates:
+              - Path=/api/orders, /api/orders/**
+          - id: delivery-tracking-service
+            uri: http://localhost:8084
+            predicates:
+              - Path=/api/deliveries/**, /api/tracking/**, /ws/**
+          - id: payment-service
+            uri: http://localhost:8085
+            predicates:
+              - Path=/api/payments/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

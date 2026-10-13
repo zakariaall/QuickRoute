@@ -1,0 +1,64 @@
+# =============================================
+# QuickRoute - Catalog Restaurant Service
+# =============================================
+
+server:
+  port: 8083
+
+spring:
+  application:
+    name: catalog-restaurant-service
+
+  # ---- PostgreSQL (Docker : port 5432) ----
+  datasource:
+    url: jdbc:postgresql://localhost:5432/quickroute_db
+    username: quickroute
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # ---- Flyway (Migrations de schéma) ----
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  # ---- Redis (Docker : port 6379) ----
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  # ---- Kafka (Docker : port 9092) ----
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: catalog-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+  # ---- Keycloak (Docker : port 9090) ----
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9091/realms/quickroute
+          jwk-set-uri: http://localhost:9091/realms/quickroute/protocol/openid-connect/certs
+
+# ---- Actuator (Health checks) ----
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

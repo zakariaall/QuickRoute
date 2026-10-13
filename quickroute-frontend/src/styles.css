@@ -1,0 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+html, body { margin: 0; min-height: 100%; font-family: 'DM Sans', sans-serif; background: #fffefa; color: #283028; }
+* { box-sizing: border-box; }
+button, input { font: inherit; }
+::selection { color: white; background: #f15e3b; }

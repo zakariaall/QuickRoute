@@ -1,0 +1,22 @@
+<header class="site-header">
+  <div class="nav-wrap">
+    <a routerLink="/restaurants" class="brand" aria-label="QuickRoute, accueil">
+      <span class="brand-mark">q</span><span>quickroute<span class="brand-dot">.</span></span>
+    </a>
+    <div class="delivery-area"><span class="pin">⌖</span><span><small>Livrer à</small><strong>Casablanca, Maroc</strong></span><span class="chevron">⌄</span></div>
+    <nav aria-label="Navigation principale">
+      <a routerLink="/restaurants" routerLinkActive="active">Restaurants</a>
+      @if (auth.user(); as user) {
+        <a routerLink="/orders" routerLinkActive="active">Mes commandes</a>
+        @if (user.roles.includes('ADMIN')) { <a routerLink="/admin/applications" routerLinkActive="active">Demandes pro</a> }
+        <a class="cart-link" routerLink="/cart"><span class="cart-icon">♧</span> Panier <b>{{ cart.totalCount() }}</b></a>
+        <button class="account-button" (click)="auth.logout()"><span class="avatar">{{ user.initial }}</span><span>{{ user.name }}</span><small>Déconnexion</small></button>
+      } @else {
+        <a class="cart-link" routerLink="/cart"><span class="cart-icon">♧</span> Panier <b>{{ cart.totalCount() }}</b></a>
+        <a routerLink="/register">S’inscrire</a>
+        <button class="login-button" (click)="auth.login()">Se connecter <span>↗</span></button>
+      }
+    </nav>
+  </div>
+</header>
+<main><router-outlet></router-outlet></main>
